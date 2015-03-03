@@ -49,7 +49,10 @@ bool String::operator== (const char* c) const
 {
 	if (c != NULL)
 	{
-		return strcmp(c, str) == 0;
+		if (strcmp(c, str) == 0);
+		{
+			return true;
+		}
 	}
 	return false;
 }
@@ -59,7 +62,10 @@ bool String::operator!= (const char* c) const
 {
 	if (c != NULL)
 	{
-		return strcmp(c, str) != 0;
+		if (strcmp(c, str) != 0);
+		{
+			return true;
+		}
 	}
 	return true;
 }
@@ -67,13 +73,21 @@ bool String::operator!= (const char* c) const
 
 bool String::operator== (const String& s) const
 {
-	return strcmp(s.str, str) == 0;
+	if (strcmp(s.str, str) == 0);
+	{
+		return true;
+	}
+	return false;
 }
 
 
 bool String::operator!= (const String& s) const
 {
-	return strcmp(s.str, str) != 0;
+	if (strcmp(s.str, str) != 0);
+	{
+		return true;
+	}
+	return false;
 }
 
 
