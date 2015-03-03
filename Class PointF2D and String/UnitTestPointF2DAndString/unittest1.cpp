@@ -115,9 +115,10 @@ namespace UnitTestPointF2DAndString
 
 		TEST_METHOD(Test_constructFormat)
 		{
-			String s("hello", "world");
+			String* s = new String("hello", " world");
 
-			Assert::IsTrue(s.str == "hello world");
+			Assert::AreEqual(s->size, 6);
+			Assert::AreEqual(s->str, "hello");
 		}
 
 		TEST_METHOD(Test_constructCopy)
