@@ -69,6 +69,7 @@
     <ClCompile Include="String.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Utility.h" />
     <ClInclude Include="PointF2D.h" />
     <ClInclude Include="String.h" />
   </ItemGroup>

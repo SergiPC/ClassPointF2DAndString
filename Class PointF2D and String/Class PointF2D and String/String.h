@@ -6,7 +6,6 @@
 class String{
 
 private:
-	void Alloc(unsigned int s);
 
 public:
 	int size;
