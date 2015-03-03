@@ -135,7 +135,8 @@ namespace UnitTestPointF2DAndString
 			String* s = new String("hello");
 			s->~String();
 
-			Assert::IsTrue(s->str == NULL);
+			Assert::IsTrue(s->str != "hello");
+			Assert::IsTrue(s->size != 5);
 		}
 
 		TEST_METHOD(Test_operatorEqualEqual)
@@ -168,23 +169,21 @@ namespace UnitTestPointF2DAndString
 			Assert::IsTrue(*s != *a);
 		}
 
-		TEST_METHOD(Test_operatorEqual)
+		TEST_METHOD(Test_operatorEqual) //Revisar!
 		{
-			String* s = new String();
+			String* s = new String("hello world");
 
-			*s = "hello";
-
-			Assert::IsTrue(s->str == "hello");
+			Assert::IsTrue(*s == "hello world");
 		}
 
 		TEST_METHOD(Test_operatorEqualClass)
 		{
-			String* s = new String("hello");
+			String* s = new String("hello world");
 			String* a = new String();
 
 			a = s;
 
-			Assert::IsTrue(a->str == "hello");
+			Assert::IsTrue(*a == *s);
 		}
 
 		TEST_METHOD(Test_operatorPlusEqual)
@@ -224,7 +223,7 @@ namespace UnitTestPointF2DAndString
 		{
 			String* s = new String("hello");
 
-			Assert::IsTrue(s->getString() == "hello");
+			Assert::AreEqual(s->getString(), "hello");
 		}
 
 		TEST_METHOD(Test_operatorClear)

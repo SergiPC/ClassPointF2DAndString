@@ -25,13 +25,15 @@ String::String(const char* format, ...)
 		va_end(ap);
 		if (res > 0)
 		{
-			str = new char[res + 1];
+			size = res + 1;
+			str = new char[size];
 			strcpy_s(str, size, tmp);
 		}
 	}
 	if (size == 0)
 	{
-		str = new char[1];
+		size = 1;
+		str = new char[size];
 		clear();
 	}
 }
@@ -49,7 +51,7 @@ bool String::operator== (const char* c) const
 {
 	if (c != NULL)
 	{
-		if (strcmp(c, str) == 0);
+		if (strcmp(str, c) == 0)
 		{
 			return true;
 		}
@@ -62,7 +64,7 @@ bool String::operator!= (const char* c) const
 {
 	if (c != NULL)
 	{
-		if (strcmp(c, str) != 0);
+		if (strcmp(c, str) != 0)
 		{
 			return true;
 		}
@@ -73,21 +75,27 @@ bool String::operator!= (const char* c) const
 
 bool String::operator== (const String& s) const
 {
-	if (strcmp(s.str, str) == 0);
+	if (strcmp(s.str, str) == 0)
 	{
 		return true;
 	}
-	return false;
+	else
+	{
+		return false;
+	}
 }
 
 
 bool String::operator!= (const String& s) const
 {
-	if (strcmp(s.str, str) != 0);
+	if (strcmp(s.str, str) != 0)
 	{
 		return true;
 	}
-	return false;
+	else
+	{
+		return false;
+	}
 }
 
 
@@ -137,11 +145,12 @@ String& String::operator +=(const char* c)
 		if (size < strlen(str) + strlen(c))
 		{
 			char* aux_str = new char[strlen(str) + 1];
-			strcpy_s(aux_str, (strlen(str) + 1), str);
+			strcpy_s(aux_str, strlen(str) + 1, str);
 			size = strlen(str) + strlen(c) + 1;
 			delete[]str;
 			str = new char[size];
 			strcpy_s(str, strlen(aux_str), aux_str);
+			delete[] aux_str;
 		}
 		strcat_s(str, strlen(c), c);
 	}
@@ -154,11 +163,12 @@ String& String::operator +=(const String& s)
 	if (size < strlen(str) + strlen(s.str))
 	{
 		char* aux_str = new char[strlen(str) + 1];
-		strcpy_s(aux_str, (strlen(str) + 1), str);
+		strcpy_s(aux_str, strlen(str) + 1, str);
 		size = strlen(str) + strlen(s.str) + 1;
 		delete[]str;
 		str = new char[size];
 		strcpy_s(str, strlen(aux_str), aux_str);
+		delete[] aux_str;
 	}
 	strcat_s(str, strlen(s.str), s.str);
 	return(*this);
