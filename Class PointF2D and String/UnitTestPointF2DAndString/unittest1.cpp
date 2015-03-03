@@ -131,107 +131,107 @@ namespace UnitTestPointF2DAndString
 
 		TEST_METHOD(Test_Destructors)
 		{
-			String s;
-			s.~String();
+			String* s = new String("hello");
+			s->~String();
 
-			Assert::IsTrue(s.str == NULL);
+			Assert::IsTrue(s->str == NULL);
 		}
 
 		TEST_METHOD(Test_operatorEqualEqual)
 		{
-			String s("hello world");
-			String a("hello world");
+			String* s = new String("hello");
 
-			Assert::IsTrue(s == a);
+			Assert::IsTrue(*s == "hello");
 		}
 
 		TEST_METHOD(Test_operatorEqualEqualClass)
 		{
-			String s("hello world");
-			String a("hello world");
+			String* s = new String("hello");
+			String* a = new String("hello");
 
-			Assert::IsTrue(s == a);
+			Assert::IsTrue(*s == *a);			
 		}
 
 		TEST_METHOD(Test_operatorNotEqual)
 		{
-			String s("hello world");
-			String a("hi");
+			String* s = new String("hello");
 
-			Assert::IsTrue(s != a);
+			Assert::IsTrue(*s != "hello");
 		}
 
 		TEST_METHOD(Test_operatorNotEqualClass)
 		{
-			String s("hello world");
-			String a("hi");
+			String* s = new String("hello");
+			String* a = new String("world");
 
-			Assert::IsTrue(s != a);
+			Assert::IsTrue(*s != *a);
 		}
 
 		TEST_METHOD(Test_operatorEqual)
 		{
-			String s("hello");
-			String a = s;
+			String* s = new String();
 
-			Assert::IsTrue(a == s);
+			*s = "hello";
+
+			Assert::IsTrue(s->str == "hello");
 		}
 
 		TEST_METHOD(Test_operatorEqualClass)
 		{
-			String s("hello");
-			String a = s;
+			String* s = new String("hello");
+			String* a = new String();
 
-			Assert::IsTrue(a == s);
+			a = s;
+
+			Assert::IsTrue(a->str == "hello");
 		}
 
 		TEST_METHOD(Test_operatorPlusEqual)
 		{
-			String s("hello");
-			String a("world");
+			String* s = new String("hello");
 
-			s += a;
+			*s = " world";
 
-			Assert::IsTrue(s == "hello world");
+			Assert::IsTrue(s->str == "hello world");
 		}
 
 		TEST_METHOD(Test_operatorPlusEqualClass)
 		{
-			String s("hello");
-			String a("world");
+			String* s = new String("hello");
+			String* a = new String(" world");
 
-			s += a;
+			*a += *s;
 
-			Assert::IsTrue(s == "hello world");
+			Assert::IsTrue(s->str == "hello world");
 		}
 
 		TEST_METHOD(Test_operatorLength)
 		{
-			String s("hello");
+			String* s = new String("hello");
 
-			Assert::IsTrue(s.length() == 5);
+			Assert::IsTrue(s->length() == 5);
 		}
 
 		TEST_METHOD(Test_operatorCapacity)
 		{
-			String s("hello");
+			String* s = new String("hello");
 
-			Assert::IsTrue(s.capacity() == 6);
+			Assert::IsTrue(s->capacity() == 6);
 		}
 
 		TEST_METHOD(Test_operatorGetString)
 		{
-			String s("hello");
+			String* s = new String("hello");
 
-			Assert::IsTrue(s.getString() == "hello");
+			Assert::IsTrue(s->getString() == "hello");
 		}
 
 		TEST_METHOD(Test_operatorClear)
 		{
-			String s("hello");
-			s.clear();
+			String* s = new String("hello");
+			s->clear();
 
-			Assert::IsTrue(s == '\0');
+			Assert::AreEqual(s->str, "");
 		}
 	};
 }

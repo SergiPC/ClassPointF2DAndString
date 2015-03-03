@@ -97,6 +97,7 @@ String& String::operator= (const char* c)
 	{
 		if (strlen(c) + 1 > size)
 		{
+			delete[]str;
 			str = new char[strlen(c) + 1];
 		}
 		else
@@ -117,6 +118,7 @@ String& String::operator= (const String& s)
 {
 	if (s.length() + 1 > size)
 	{
+		delete[]str;
 		str = new char[s.length() + 1];
 	}
 	else
@@ -183,7 +185,10 @@ char* String::getString() const
 
 void String::clear()
 {
-	str[0] = '\0';
+	for (int i = 0; i < size; i++)
+	{
+		str[i] = '\0';
+	}
 }
 
 
