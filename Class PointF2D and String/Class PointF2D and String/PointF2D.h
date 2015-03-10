@@ -3,7 +3,7 @@
 
 class PointF2D
 {
-public:
+private:
 	float x, y;
 
 public:

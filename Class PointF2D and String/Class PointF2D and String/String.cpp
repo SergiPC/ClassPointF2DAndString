@@ -1,8 +1,6 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
-#include <conio.h>
 #include "String.h"
 
 String::String()
@@ -187,7 +185,7 @@ int String::capacity() const
 }
 
 
-char* String::getString() const
+const char* String::getString()
 {
 	return(str);
 }

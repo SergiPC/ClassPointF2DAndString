@@ -6,11 +6,10 @@
 class String{
 
 private:
-
-public:
 	int size;
 	char* str;
 
+public:
 	String();
 	String(const char* format, ...);
 	String(const String& s);
@@ -24,7 +23,7 @@ public:
 	String& operator+= (const String& s);
 	unsigned int length() const;
 	int capacity() const;
-	char* getString() const;
+	const char* getString();
 	void clear();
 	~String();
 };
